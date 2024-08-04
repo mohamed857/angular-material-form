@@ -1,0 +1,95 @@
+<form class="flex-parent" [formGroup]="form">
+    <a routerLink="../login" class="text-muted cursor-pointer">
+        <i class="bi bi-arrow-left fw-bold text-primary"></i>
+    </a>
+    <img src="assets/images/king.jpg" alt="">
+    <h1>Register Form</h1>
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="first name" formControlName="userName">
+
+        <mat-icon>{{'person'}}</mat-icon>
+        @if(form.get('userName')?.hasError('required')){
+            <br>
+            <mat-error> errorrrrrrrrrrrrrrrrrrrr</mat-error>
+            <!-- <div class="alert alert-danger w-100">
+                {{'validation.requiredMeassage' | translate}}
+            </div> -->
+        }
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Email" formControlName="email">
+
+        <mat-icon>{{'email'}}</mat-icon>
+        <br>
+        <mat-error> error</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Mobil Number</mat-label>
+        <input matInput placeholder="Mobil Number" formControlName="mobilNumber">
+
+        <mat-icon>{{'phone'}}</mat-icon>
+        <br>
+        <mat-error> error</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" >
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" formControlName="password" [type]="hidePassword? 'password': 'text'">
+        <button mat-icon-button (click)="hidePassword = !hidePassword" [attr.aria.label]="'Hide Password'"
+            [attr.aria.pressed]="hidePassword">
+            <mat-icon>{{hidePassword? 'visibility_off':'visibility'}}</mat-icon>
+        </button>
+        <mat-error> error</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput placeholder="Confirm password" formControlName="confirmPassword"
+            [type]="hideConfirmPassword? 'password': 'text'">
+        <button mat-icon-button (click)="hideConfirmPassword = !hideConfirmPassword">
+            <mat-icon>{{hideConfirmPassword? 'visibility_off':'visibility'}}</mat-icon>
+        </button>
+        @if(form.get('confirmPassword')?.hasError('mustMatch')){
+            <br>
+            <mat-error> errorrrrrrrrrrrrrrrrrrrr</mat-error>
+            <!-- <div class="alert alert-danger w-100">
+                {{'validation.requiredMeassage' | translate}}
+            </div> -->
+        }
+    </mat-form-field>
+    <!-- <input type="text" placeholder="last name">
+        <input type="text" placeholder="user name">
+        <input type="email" placeholder="email">
+        <input type="password" placeholder="password">
+    -->
+        <button class="btn">Register</button>
+        <button class="btn btn-outline-alert" (click)="reset()">Reset</button>
+        <div class="alert alert-warning">
+            {{form.value | json}}
+        </div>
+        <div class="alert alert-danger">
+            {{form.get('confirmPassword')?.errors| json}}
+        </div>
+</form>
+<!-- <div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-5 p-3 rounded countainer-outline">
+            <a routerLink="../login" class="text-muted cursor-pointer">
+                <i class="bi bi-arrow-left fw-bold text-primary"></i>
+                <!- back --
+            </a>
+            <h1 class="text-center py-3 fw-bold">Sign Up</h1>
+            <form class="row" [formGroup]="form">
+                <mat-form-field>
+                    <!- <mat-label>Fill form field</mat-label> --
+                    <input  placeholder="Placeholder">
+                    <mat-icon >sentiment_very_satisfied</mat-icon>
+                    <mat-hint>Hint</mat-hint>
+                </mat-form-field>
+            </form>
+            <div class="aler alert-warning">
+                {{form.value | json}}
+            </div>
+        </div>
+    </div>
+</div> -->

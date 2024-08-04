@@ -1,0 +1,37 @@
+<form class="flex-parent" #loginForm="ngForm">
+    <img src="assets/images/king.jpg" alt="">
+    <h1>LogIn Form</h1>
+    <!-- <p>
+        {{email| json}} - {{loginForm.valid}} 
+    </p> -->
+    <input class="email" type="email" placeholder="email" [ngModel]="loginData.email" name="email" #email="ngModel"
+        required email minlength="10" pattern=".*@.*\.com$" (ngModelChange)="onEmailChanged($event)"
+        [ngModelOptions]="{updateOn: 'blur'}">
+        <!-- <mat-form-field appearance="outline">
+            <mat-label>Fill form field</mat-label>
+            <mat-icon >email</mat-icon>
+            <input matInput placeholder="Placeholder" required>
+            <mat-hint>Hint</mat-hint>
+            <mat-error>hello</mat-error>
+        </mat-form-field> -->
+    @if (email.errors && email.touched) {
+
+    <div class="alert alert-danger w-100">
+        {{'validation.requiredMeassage' | translate}}
+    </div>
+    }
+    <!-- <div class="alert alert-danger w-100" [hidden]="emaill.valid">
+        email is required
+    </div> -->
+    <!-- <mat-form-field></mat-form-field> -->
+    <input class="password" [type]="hide ? 'password' : 'text'" placeholder="password" [(ngModel)]="loginData.password"
+        name="password" #password="ngModel" minlength="6" required>
+    <!-- <button>login</button> -->
+    <button class="btn"  type="submit" [disabled]="loginForm.invalid">login</button>
+    <!-- <a [routerLink]="'/account'" [routerLinkActive]="'active'">Home</a> -->
+
+    <p>or</p>
+    <a routerLink="../register" class="btn">register</a>
+    <h1>{{counter()}}</h1>
+    <button (click)="increase()">incres</button>
+</form>
